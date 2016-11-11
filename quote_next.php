@@ -92,11 +92,11 @@ $delivery = $dq['status'] == '2' ? $cek : '-';
 		<br> <span style="font-style:italic; font-size:10px;"> '.$dkg['deskripsi'].'</span><a>
 		
 		</td>
+		<td align="center" class="'.$pm1.'">'.$check_pdf.'</td>
 		<td style="text-align:center;">'.$delivery.'</td>
-		<td style="text-align:center;"><a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'">'.$check.'</a></td>
-		<td align="center" class="'.$pm1.'">
-			'.$check_pdf.'
-		</td>
+		<td style="text-align:center;"><a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'">
+		'.$check.'</a></td>
+
 	</tr>';
 }
 $vcom="SELECT * FROM
@@ -206,15 +206,16 @@ echo'
 					<div class="row-fluid">
 					<div class="span12">
 					<div class="widget-body">
-							 <table class="table table-striped table-bordered dataTable" id="sample_1">
-								<thead>
-								<tr>
-									<th class="hidden-phone">No</th>
-									<th>No Quotation</th>
-									<th class="hidden-phone" width="55%">Activity Name</th>
-									<th width="15%">Delivery Report</th>
-									<th>Status</th>
-									<th align="center" width="10%" class="'.$pm1.'">Action</th>
+					   <table class="table table-striped table-bordered dataTable" id="sample_1">
+						 <thead>
+							<tr>
+							<th class="hidden-phone">No</th>
+							<th style="text-align:center;">No Quotation</th>
+							<th class="hidden-phone" width="55%" style="text-align:center;">Activity Name</th>
+							<th style="text-align:center;" width="10%" class="'.$pm1.'">Action</th>
+							<th width="15%" style="text-align:center;">Delivery Report</th>
+							<th style="text-align:center;">Status</th>
+									
 								</tr>
 								</thead>
 								<tbody>

@@ -28,6 +28,7 @@ $deskripsi  = nl2br($deskripsi);
 $syarat  	= str_replace("'","\'",$_POST['syarat']);
 $syarat  	= nl2br($syarat);
 $ttdstat	= $_POST['ttdstat'];
+$keterangan = $_POST['keterangan'];
 
 //Product
 $qty		= $_POST['quantity'];
@@ -120,20 +121,23 @@ if(isset($insert)){
 	$rpro = $xoopsDB->query($qpro);
 	$dpro = $xoopsDB->fetchArray($rpro);	
 	
+	//off sedang percobaan
 	require "phpmailer/PHPMailerAutoload.php";
 	$mail = new PHPMailer();
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+    $mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $datam['email']; //Reply to this email ID
 	$email = $datam['email']; // Recipients email ID
 	$name = $datam['uname']; // Recipient's name
 	$mail->From = $webmaster_email;
 	$mail->FromName = "Quotation Code : ".$no_quote." need checked PM";
 	$mail->AddAddress($email,$name);
-	//$mail->AddAddress('taufikid07@gmail.com','Finance');
+	$mail->AddAddress('darismanhendra@gmail.com','Finance');
 	//$mail->AddAddress('invoice@fujicon-japan.com','Finance');
 	$mail->AddReplyTo($webmaster_email,"namawebmaster");
 	$mail->WordWrap = 50; // set word wrap
@@ -307,19 +311,22 @@ if (isset($checked)){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $dpc['email']; //Reply to this email ID
 	$email = $dpc['email']; // Recipients email ID
 	$name = $dpc['uname']; // Recipient's name
 	$mail->From = $webmaster_email;
 	$mail->FromName = "Konfirmasi Approve Quotation Code : ".$dpr['no_quote']."";
 	$mail->AddAddress($email,$name);
+	$mail->AddAddress('darismanhendra@gmail.com','Finance');
 	//$mail->AddAddress('taufikid07@gmail.com','Finance');
-	$mail->AddAddress('invoice@fujicon-japan.com','Finance');
+	//$mail->AddAddress('invoice@fujicon-japan.com','Finance');
 	$mail->AddReplyTo($webmaster_email,"namawebmaster");
-	$mail->AddCC('andhi@fujicon-japan.com', 'andhi@fujicon-japan.com');
-	$mail->AddCC('finance@fujicon-japan.com', 'finance@fujicon-japan.com');
+	//$mail->AddCC('andhi@fujicon-japan.com', 'andhi@fujicon-japan.com');
+	//$mail->AddCC('finance@fujicon-japan.com', 'finance@fujicon-japan.com');
 	$mail->WordWrap = 50; // set word wrap
 	$mail->AddAttachment("/var/tmp/file.tar.gz"); // attachment
 	$mail->AddAttachment("/tmp/image.jpg", "new.jpg"); // attachment
@@ -444,19 +451,22 @@ if (isset($approve)){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $dpc['email']; //Reply to this email ID
 	$email = $dpc['email']; // Recipients email ID
 	$name = $dpc['uname']; // Recipient's name
 	$mail->From = $webmaster_email;
 	$mail->FromName = "Konfirmasi Approve Quotation Code : ".$dpr['no_quote']."";
 	$mail->AddAddress($email,$name);
+	$mail->AddAddress('darismanhendra@gmail.com','Finance');
 	//$mail->AddAddress('taufikid07@gmail.com','Finance');
 	//$mail->AddAddress('invoice@fujicon-japan.com','Finance');
 	$mail->AddReplyTo($webmaster_email,"namawebmaster");
-	$mail->AddCC('andhi@fujicon-japan.com', 'andhi@fujicon-japan.com');
-	$mail->AddCC('finance@fujicon-japan.com', 'finance@fujicon-japan.com');
+	//$mail->AddCC('andhi@fujicon-japan.com', 'andhi@fujicon-japan.com');
+	//$mail->AddCC('finance@fujicon-japan.com', 'finance@fujicon-japan.com');
 	$mail->WordWrap = 50; // set word wrap
 	$mail->AddAttachment("/var/tmp/file.tar.gz"); // attachment
 	$mail->AddAttachment("/tmp/image.jpg", "new.jpg"); // attachment
@@ -593,8 +603,10 @@ if (isset($revisi)){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $datam['email']; //Reply to this email ID
 	$email = $datam['email']; // Recipients email ID
 	$name = $datam['uname']; // Recipient's name
@@ -752,8 +764,10 @@ if (isset($duplikat)){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $datam['email']; //Reply to this email ID
 	$email = $datam['email']; // Recipients email ID
 	$name = $datam['uname']; // Recipient's name
@@ -872,15 +886,18 @@ if ($off=='non_send'){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $dpc['email']; //Reply to this email ID
 	$email = $dpc['email']; // Recipients email ID
 	$name = $dpc['uname']; // Recipient's name
 	$mail->From = $webmaster_email;
-	$mail->FromName = "delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
+	$mail->FromName = "Delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
 	//$mail->AddAddress($email,$name);
-	$mail->AddAddress('taufikid07@gmail.com','Finance');
+	$mail->AddAddress('darismanhendra@gmail.com','Finance');
+	//$mail->AddAddress('taufikid07@gmail.com','Finance');
 	//$mail->AddAddress('invoice@fujicon-japan.com','Finance');
 	$mail->AddReplyTo($webmaster_email,"namawebmaster");
 	$mail->AddCC($email, $email);
@@ -890,7 +907,7 @@ if ($off=='non_send'){
 	$mail->AddAttachment("/tmp/image.jpg", "new.jpg"); // attachment
 	$mail->IsHTML(true); // send as HTML
 	$mail->AddEmbeddedImage('headerd.png', 'logog');
-	$mail->Subject = "delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
+	$mail->Subject = "Delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
 	$mail->Body = '
 	<table style="width:100%; margin:auto; background: #ccc; background: -moz-linear-gradient( center top, #ccc 30%, #fff 100% ); background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #ccc), color-stop(1, #fff) );">
 		  <tr>
@@ -958,7 +975,8 @@ if ($on=='send'){
 	$uid		= $_GET['uid'];
 	$quote		= $_GET['quote'];
 	$pr 		= $_GET['pr'];
-	$xquery=' UPDATE '. $xoopsDB->prefix('crm_quotation')." SET send_client='1' WHERE id_quote=".$quote;
+	$keterangan = $_POST['keterangan'];
+	$xquery=' UPDATE '. $xoopsDB->prefix('crm_quotation')." SET keterangan='$keterangan', send_client='1' WHERE id_quote=".$quote;
 	$resx=$xoopsDB->queryF($xquery);
 	
 	// Email untuk PM
@@ -990,25 +1008,28 @@ if ($on=='send'){
 	$mail->Host     = "ssl://mail.gmail.com"; // SMTP server Gmail
 	$mail->Mailer   = "smtp";
 	$mail->SMTPAuth = true; // turn on SMTP authentication
-	$mail->Username = "fujicon.link2015@gmail.com"; // 
-	$mail->Password = "fujicon2015*"; // SMTP password
+	$mail->Username = "hendradarisman34@gmail.com"; // 
+	$mail->Password = "darisman94"; // SMTP password
+	//$mail->Username = "fujicon.link2015@gmail.com"; // 
+	//$mail->Password = "fujicon2015*"; // SMTP password
 	$webmaster_email = $dpc['email']; //Reply to this email ID
 	$email = $dpc['email']; // Recipients email ID
 	$name = $dpc['uname']; // Recipient's name
 	$mail->From = $webmaster_email;
-	$mail->FromName = "delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
+	$mail->FromName = "Delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
 	//$mail->AddAddress($email,$name);
 	//$mail->AddAddress('taufikid07@gmail.com','Finance');
-	$mail->AddAddress('invoice@fujicon-japan.com','Finance');
+	//$mail->AddAddress('invoice@fujicon-japan.com','Finance');
+	$mail->AddAddress('darismanhendra@gmail.com');
 	$mail->AddReplyTo($webmaster_email,"namawebmaster");
 	$mail->AddCC($email, $email);
-	$mail->AddCC('andri@fujicon-japan.com', 'andri@fujicon-japan.com');
+	//$mail->AddCC('andri@fujicon-japan.com', 'andri@fujicon-japan.com');
 	$mail->WordWrap = 50; // set word wrap
 	$mail->AddAttachment("/var/tmp/file.tar.gz"); // attachment
 	$mail->AddAttachment("/tmp/image.jpg", "new.jpg"); // attachment
 	$mail->IsHTML(true); // send as HTML
 	$mail->AddEmbeddedImage('headerd.png', 'logog');
-	$mail->Subject = "delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
+	$mail->Subject = "Delivery quotation to the client with a quotation numbers : ".$dpr['no_quote']."";
 	$mail->Body = '
 	<table style="width:100%; margin:auto; background: #ccc; background: -moz-linear-gradient( center top, #ccc 30%, #fff 100% ); background: -webkit-gradient( linear, left top, left bottom, color-stop(.2, #ccc), color-stop(1, #fff) );">
 		  <tr>
