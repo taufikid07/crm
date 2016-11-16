@@ -199,7 +199,7 @@ $cek_matuang = $edata['bahasa']== 'Rp.' ? $obj : $obj1;
 $rest = substr($cek_matuang->words,0, -1);  
 
 $ttdstatus = $edata['tax_percent'] == 10 ? '
-<span style="font-size:11px;">* This price including VAT 10% ('.$edata['bahasa'].'. '.number_format($tax, 0, '.', '.').')</span> ' :
+<span style="font-size:11px;">* This Price Including VAT 10% ('.$edata['bahasa'].'. '.number_format($tax, 0, '.', '.').')</span> ' :
 '
 <span style="font-size:11px;">* Nilai tidak termasuk pajak </span> ';
 // ======================================= PDF ============================================
@@ -252,7 +252,7 @@ $tes2.='
     <td colspan="2" class="tdtes" style="width:60%; font-weight:bold; padding-left:10px;">'.$dpr['nama'].'</td>
   </tr>
   <tr>
-    <td class="tdtes1" style="color:#069;">Amaount</td>
+    <td class="tdtes1" style="color:#069;">Amount</td>
     <td class="tdtes1">:</td>
     <td colspan="2" class="tdtes1" style="text-align:center; font-size:11px; width:280px;"> # '.$rest.' #</td>
   </tr>

@@ -87,11 +87,12 @@ $cek =$dq['send_client'] == 1 ? '<a href="model/medel_invoice?off=non_send&uid='
 		<td class="hidden-phone">'.$i.'</td>
 		<td><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$dq['no_invoice'].'</a></td>
 		<td style="text-align:center"><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$dkg['nama_kegiatan'].' <br> <i><span style="font-size:10px;">'.$dkg['deskripsi'].'</span></i> </a></td>
+      <td align="center" class="'.$pm1.'">
+      '.$check_pdf.'
+    </td>
 		<td style="text-align:center;">'.$cek.'</td>
 		<td class="hidden-phone" style="text-align:center;">'.$check.'</td>
-		<td align="center" class="'.$pm1.'">
-			'.$check_pdf.'
-		</td>
+	
 	</tr>
 	';
 }
@@ -203,11 +204,12 @@ echo '
                                 <thead>
                                 <tr>
                                     <th class="hidden-phone">No</th>
-                                    <th>No Invoice</th>
-                                    <th width="55%">Activity Name</th>
-                                    <th width="15%">Send to client</th>
-                                    <th>Status</th>
-                                    <th align="center" width="10%" class="'.$pm1.'">Action</th>
+                                    <th style="text-align:center;">No Invoice</th>
+                                    <th width="55%" style="text-align:center;">Activity Name</th>
+                                    <th style="text-align:center;" width="10%" class="'.$pm1.'">Action</th>
+                                    <th width="15%" style="text-align:center;">Send to client</th>
+                                    <th style="text-align:center;">Status</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>

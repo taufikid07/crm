@@ -35,10 +35,10 @@ if ($dq['status'] == '2') {
     $check_pdf.= '
 	<center>
 	<a href="pdf/invoice_yes?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" data-toggle="tooltip" title="Print invoice" class="btn btn-primary" target="_blank"><i class="icon-arrow-down"></i></a>
-	<a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" class="btn btn-primary"><i class="icon-eye-open"></i><a>
+	<a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" class="btn btn-primary" title="Detail invoice"><i class="icon-eye-open"></i><a>
 	<a href="pdf/pdf_kwitansi?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" data-toggle="tooltip" title="Print kwitansi" class="btn btn-primary" target="_blank"><i class="icon-download-alt"></i></a>
 	<a href="invoice_duplikat?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" class="btn btn-inverse"><i class="icon-copy"></i></a>
-	<a href="invoice_revisi?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" class="btn "><i class="icon-list-alt"></i></a>
+	<a href="invoice_revisi?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" class="btn " title="Termin invoice"><i class="icon-list-alt"></i></a>
 	</center>';
 } elseif ($dq['status'] == '1' && $dq['project_manager'] == $uid) {
     $check_pdf.= '
@@ -66,12 +66,13 @@ $cek =$dq['send_client'] == 1 ? '<a href="model/model_invoice?off=non_send&uid='
 		<td class="hidden-phone">'.$i.'</td>
 		<td><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$dq['no_invoice'].'</a></td>
 		<td style="text-align:center"><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$dkg['nama_kegiatan'].' <br> <i><span style="font-size:10px;">'.$dkg['deskripsi'].'</span></i> </a></td>
-		<td style="text-align:center;">'.$cek.'</td>
-		<td style="text-align:center;"><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$check.'</a></td>
 		<td align="center" class="'.$pm1.'">
 			<a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >
 			'.$check_pdf.'
 			</a>
+		<td style="text-align:center;">'.$cek.'</td>
+		<td style="text-align:center;"><a href="invoice_view?pr='.$dq['id_perusahaan'].'&keg='.$dq['id_kegiatan'].'&quote='.$dq['id_quote'].'&inv='.$dq['id_invoice'].'" >'.$check.'</a></td>
+		
 		</td>
 	</tr>
 	';
@@ -260,11 +261,12 @@ echo'
                                 <thead>
                                 <tr>
                                     <th class="hidden-phone">No</th>
-                                    <th>No Invoice</th>
-                                    <th width="55%">Activity Name</th>
-                                    <th width="15%">Send to client</th>
-                                    <th>Status</th>
-                                    <th align="center" width="10%" class="'.$pm1.'">Action</th>
+                                    <th style="text-align:center;">No Invoice</th>
+                                    <th width="55%" style="text-align:center;">Activity Name</th>
+                                    <th style="text-align:center;" width="10%" class="'.$pm1.'">Action</th>
+                                    <th width="15%" style="text-align:center;">Send to client</th>
+                                    <th style="text-align:center;">Status</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>

@@ -7,8 +7,11 @@
 <link rel="stylesheet" href="plugin/style.css" type="text/css" />
 
 <link rel="stylesheet" href="plugin/datepicker/datepicker.css" type="text/css" />
+<link rel="stylesheet" href="plugin/datepicker/bootstrap-combined.css" type="text/css" />
 <script type="text/javascript" src="plugin/datepicker/jquery.js"></script>
 <script type="text/javascript" src="plugin/datepicker/datepicker.js"></script>
+<script type="text/javascript" src="plugin/datepicker/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="plugin/datepicker/eye.js"></script>
 <script type="text/javascript" src="plugin/datepicker/layout.js?ver=1.0.2"></script>
 

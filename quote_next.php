@@ -80,7 +80,38 @@ if ($dq['status'] == '2') {
 }
 $tmpil=$pm1 == ''? '-' : ''.$date1.'';
 //$check_pro=$dq['send_client'] == '1' ? 'checked' : '0';
-	$cek =$dq['send_client'] == 1 ? '<a href="model/model_quote?off=non_send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-success" onClick="return confirm(\'Are you sure?\')"> Delivered </a>' : '<a href="model/model_quote?on=send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-danger" onClick="return confirm(\'Are you sure?\')"> Pending </a>';
+	$cek =$dq['send_client'] == 1 ? '<a href="model/model_quote?off=non_send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-success" onClick="return confirm(\'Are you sure?\')"> Delivered </a>' : '<a data-toggle="modal" href="#form-content" class="btn btn-warning">Ready To Send</a>
+<!-- Start Modal Bootstap untuk aksi ready to send -->
+
+   <div id="form-content" class="modal hide fade in" style="align: center; ">
+	 <div class="modal-header">
+	  <a class="close" data-dismiss="modal">X</a>
+	   <h3>Keterangan</h3>
+   </div>
+	 <div>
+	  <form class="contact" action="model/model_quote?on=send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" method="POST"  enctype="multipart/form-data">
+		<fieldset>
+	     <div class="modal-body">
+	      <ul class="nav nav-list">
+	       <li class="nav-header">Silahkan Isi Keterangan</li>
+		   <li><textarea class="input-xlarge" name="keterangan" id="keterangan" rows="8">
+		    </textarea></li>
+		  </ul> 
+	     </div>
+		</fieldset>
+	   
+	  </div>
+	  <div class="modal-footer">
+	  <button class="btn btn-success" type="submit" name="on" >Deal</button>
+	   <a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+	   </form>
+  		</div>
+	</div>
+  
+   </div>
+ </div>
+ <!--END-->
+	';
 $delivery = $dq['status'] == '2' ? $cek : '-';
 	
 	$qt.='
@@ -92,11 +123,11 @@ $delivery = $dq['status'] == '2' ? $cek : '-';
 		<br> <span style="font-style:italic; font-size:10px;"> '.$dkg['deskripsi'].'</span><a>
 		
 		</td>
+		<td align="center" class="'.$pm1.'">'.$check_pdf.'</td>
 		<td style="text-align:center;">'.$delivery.'</td>
-		<td style="text-align:center;"><a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'">'.$check.'</a></td>
-		<td align="center" class="'.$pm1.'">
-			'.$check_pdf.'
-		</td>
+		<td style="text-align:center;"><a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'">
+		'.$check.'</a></td>
+
 	</tr>';
 }
 $vcom="SELECT * FROM
@@ -206,15 +237,16 @@ echo'
 					<div class="row-fluid">
 					<div class="span12">
 					<div class="widget-body">
-							 <table class="table table-striped table-bordered dataTable" id="sample_1">
-								<thead>
-								<tr>
-									<th class="hidden-phone">No</th>
-									<th>No Quotation</th>
-									<th class="hidden-phone" width="55%">Activity Name</th>
-									<th width="15%">Delivery Report</th>
-									<th>Status</th>
-									<th align="center" width="10%" class="'.$pm1.'">Action</th>
+					   <table class="table table-striped table-bordered dataTable" id="sample_1">
+						 <thead>
+							<tr>
+							<th class="hidden-phone">No</th>
+							<th style="text-align:center;">No Quotation</th>
+							<th class="hidden-phone" width="55%" style="text-align:center;">Activity Name</th>
+							<th style="text-align:center;" width="10%" class="'.$pm1.'">Action</th>
+							<th width="15%" style="text-align:center;">Delivery Report</th>
+							<th style="text-align:center;">Status</th>
+									
 								</tr>
 								</thead>
 								<tbody>

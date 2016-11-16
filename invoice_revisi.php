@@ -18,8 +18,14 @@ $str_level = $level == 0 ? _DR_ALL : $level;
 
 $query = " SELECT * FROM ".$xoopsDB->prefix("crm_invoice")." AS i where i.id_invoice =".$inv."";
 $res = $xoopsDB->queryF($query);
-$edata = $xoopsDB->fetchArray($res);
+
+//Penambahan kode revisi
+$no      ="-1";
+$edata   = $xoopsDB->fetchArray($res);
+$edata1  = $edata['no_invoice'];
+$cetaks  = substr_replace($edata1,$no,3,0);
 $sbreaks = array("<br />","<br>","<br/>"); 
+//End Logic kode
 
 $qmanager =" SELECT * FROM ".$xoopsDB->prefix("groups")." AS g
 WHERE g.`name` = 'Project Manager'";
@@ -293,7 +299,7 @@ echo '
                 <!-- BEGIN VALIDATION STATES-->
                 <div class="widget black">
                     <div class="widget-title">
-                        <h4><i class="icon-reorder"></i> Revisi Invoice </h4>
+                        <h4><i class="icon-reorder"></i> Termin Invoice </h4>
                         <div class="actions sm-btn-position">
                             <a href="q_invoice_next?nextq='.$nextq.'" class="btn btn-primary btn-small"> Back <i class="icon-arrow-right"></i> </a>
                         </div>
@@ -320,7 +326,7 @@ echo '
                                      
                                          <div class="control-group ">
                                              <label class="control-label">No Invoice</label>
-                                             <input name="no_invoice" type="text" class="span5" value="'.$edata['no_invoice'].'">
+                                             <input name="no_invoice" type="text" class="span5" value="'.$cetaks.'" disabled="disabled">
                                          </div>
                                          <div class="control-group ">
                                              <label class="control-label">Client Name</label>	
@@ -361,14 +367,14 @@ echo '
                                      <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">cek</th>
-                                                <th class="text-center">Order By</th>
-                                                <th class="text-center">Spasi</th>
-                                                <th class="text-center span7">Description</th>
-                                                <th class="text-center">Unit</th>
-                                                <th class="text-center">Unit Price</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th class="text-center">total Price</th>
+                                                <th style="text-align:center;">Cek</th>
+                                                <th style="text-align:center;">Order By</th>
+                                                <th style="text-align:center;">Spasi</th>
+                                                <th style="text-align:center;">Description</th>
+                                                <th style="text-align:center;">Unit</th>
+                                                <th style="text-align:center;">Unit Price</th>
+                                                <th style="text-align:center;">Quantity</th>
+                                                <th style="text-align:center;">Total Price</th>
                                             </tr>
                                         </thead>
                                         <tbody id="cons">
@@ -376,8 +382,9 @@ echo '
                                         </tbody>
                                     </table>
                                     <div class="space10"></div>
-                                    <input type="button" value="Add New" id="add_new1" class="btn btn-small">
-                                    <input type="button" value="Delete" id="removeButton1" class="btn btn-small">
+                                    <input type="button" value="Add New" id="add_new1" class="btn btn-success btn-small">
+                                    <button type="button" id="subtot1" class="btn btn-info btn-small subtot1">Subtotal</button>
+                                    <input type="button" value="Delete" id="removeButton1" class="btn btn-danger btn-small">
                                 </div>
                              </div>
                              <div class="space15"></div>
@@ -440,16 +447,16 @@ echo '
                          </div>
                              <div class="row-fluid">
                                  <div class="span6 billing-form">
-                                     <h4>published</h4>
+                                     <h4>Published</h4>
                                      <div class="space10"></div>
                                          <div class="control-group ">
-                                             <label class="control-label">Date publish invoice</label>
+                                             <label class="control-label">Date Publish Invoice</label>
                                              <input name="date_invoice" id="dp2" type="text" value="'.$edata['tgl_TerbitInvoice'].'" size="16" class="m-ctrl-medium">
                                              <input name="date_kuitansi" type="hidden" value="'.$edata['tgl_TerbitKuitansi'].'" size="16" class="m-ctrl-medium">
                                              <input name="pub_kui" type="hidden" value="'.$edata['terbit_kuitansi'].'" size="16" class="m-ctrl-medium">
                                          </div>
                                          <div class="control-group ">
-                                             <label class="control-label">Publish by</label>
+                                             <label class="control-label">Publish By</label>
                                                 <select style="width:220px" name="pub_invoice">
                                                     <option value=""> Choose
                                                     '.$pub_invo.'
@@ -460,7 +467,7 @@ echo '
                                      <h4>Currency format</h4>
                                      <div class="space10"></div>
                                          <div class="control-group ">
-                                             <label class="control-label">Currency format / used</label>
+                                             <label class="control-label">Currency Format / Used</label>
                                              <select name="bahasa" class="input-large m-wrap" tabindex="1">
                                                 '.$bhsa.'
                                                 <option value="">Pilih</option>
@@ -548,6 +555,45 @@ $(document).ready(function(){
 				'</tr>'
 			);
 		});		
+
+// Variabel Subtotal
+
+		var countersub = <?php echo $rowc; ?>;
+		var j=<?php echo $rowc; ?>;
+		$(".subtot1").on('click', function() {
+			j=j+1;
+			$('#cons').append(
+
+				'<tr id="text_input1_'+countersub+'">'+
+				'<td class="text-center"><input type="checkbox" name="id_act[]" value="aktif" class="input-small" checked></td>'+
+				'<td><input name="orderby[]" type="text" class="input-mini" value=" " readonly="readonly"></td>'+
+				'<td><select name="spasi[]" class="input-small m-wrap" tabindex="1" style="font-weight:bold;">'+
+					'<option value="0"> &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</option>'+
+					'<option value="10"> &nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</option>'+
+					'<option value="20"> &nbsp;&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; </option>'+
+					'<option value="30"> &nbsp;&nbsp;&nbsp;&nbsp;>>>&nbsp;&nbsp;&nbsp; </option>'+
+				'</select></td>'+
+				'<td><textarea name="des[]" class="span12" rows="3"></textarea></td>'+
+				'<td><input type="text" name="unit[]" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="price[]" id="price_'+i+'" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="total[]" id="total2_'+i+'" class="input-medium subtot1" ></td>'+
+				'</tr>'
+			);
+
+$(document).on('click','.subtot1',function(){
+	total3 	  = $(this).parent().closest('tr').find('.total_').val();
+	total2_   = $(this).val();
+	subtot1   = 0;
+	subtot1   = total3 + total2_;
+	$('.subtot1').val(total);
+
+	calculateTotal();
+});
+});
+
+
+
 		$("#removeButton1").click(function () {
 			if(counter1c==0){
 				alert("Tidak ada file yang dapat dihapus ("+counter1c+")");
@@ -613,7 +659,8 @@ $(document).on('change keyup blur','.changesNo',function(){
 	id = id_arr.split("_");
 	quantity = $('#quantity_'+id[1]).val();
 	price = $('#price_'+id[1]).val();
-	if( quantity!='' && price !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(0) );	
+	if( quantity!='' && price !='' )
+	$('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(0) );	
 	calculateTotal();
 });
 
