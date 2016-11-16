@@ -69,17 +69,17 @@ if ($dq['status'] == '2') {
     $check_pdf.= '
 	<center>
 	<a href="pdf/quote_no?quote='.$dq['id_quote'].'" data-toggle="tooltip" title="Print quote" class="btn btn-primary" target="_blank"><i class="icon-arrow-down"></i></a>
-	<a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-primary"><i class="icon-eye-open"></i><a>
-	<a href="quote_edit?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-warning"><i class="icon-pencil"></i></a>
+	<a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-primary"><i class="icon-eye-open" title="View quote"></i><a>
+	<a href="quote_edit?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-warning" title="Edit quote"><i class="icon-pencil" ></i></a>
 	<a href="model/model_quote?del=quo_delete&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" onClick="return confirm(\'Are you sure?\')" class="btn btn-danger"><i class="icon-trash"></i></a>
 	</center>';
 } elseif ($dq['status'] == '0') {
     $check_pdf.= '
 	<center>
 	<a href="pdf/quote_no?quote='.$dq['id_quote'].'" data-toggle="tooltip" title="Print quote" class="btn btn-primary" target="_blank"><i class="icon-arrow-down"></i></a>
-	<a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-primary"><i class="icon-eye-open"></i><a>
-	<a href="quote_edit?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-warning"><i class="icon-pencil"></i></a>
-	<a href="model/model_quote?del=quo_delete&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" onClick="return confirm(\'Are you sure?\')" class="btn btn-danger"><i class="icon-trash"></i></a>
+	<a href="quote_view?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-primary" title="Edit quote"><i class="icon-eye-open" title="View quote"></i><a>
+	<a href="quote_edit?pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-warning"><i class="icon-pencil" ></i></a>
+	<a href="model/model_quote?del=quo_delete&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" onClick="return confirm(\'Are you sure?\')" class="btn btn-danger" title="Delete quote"><i class="icon-trash"></i></a>
 	</center>';
 }
 $tmpil=$pm1 == ''? '-' : ''.$date1.'';
@@ -106,8 +106,10 @@ $tmpil=$pm1 == ''? '-' : ''.$date1.'';
 	   
 	  </div>
 	  <div class="modal-footer">
+	  <p class="text-center">
 	  <button class="btn btn-success" type="submit" name="on" >Deal</button>
 	   <a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+	   </p>
 	   </form>
   		</div>
 	</div>

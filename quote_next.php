@@ -80,7 +80,38 @@ if ($dq['status'] == '2') {
 }
 $tmpil=$pm1 == ''? '-' : ''.$date1.'';
 //$check_pro=$dq['send_client'] == '1' ? 'checked' : '0';
-	$cek =$dq['send_client'] == 1 ? '<a href="model/model_quote?off=non_send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-success" onClick="return confirm(\'Are you sure?\')"> Delivered </a>' : '<a href="model/model_quote?on=send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-danger" onClick="return confirm(\'Are you sure?\')"> Pending </a>';
+	$cek =$dq['send_client'] == 1 ? '<a href="model/model_quote?off=non_send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" class="btn btn-success" onClick="return confirm(\'Are you sure?\')"> Delivered </a>' : '<a data-toggle="modal" href="#form-content" class="btn btn-warning">Ready To Send</a>
+<!-- Start Modal Bootstap untuk aksi ready to send -->
+
+   <div id="form-content" class="modal hide fade in" style="align: center; ">
+	 <div class="modal-header">
+	  <a class="close" data-dismiss="modal">X</a>
+	   <h3>Keterangan</h3>
+   </div>
+	 <div>
+	  <form class="contact" action="model/model_quote?on=send&uid='.$uid.'&pr='.$dq['id_perusahaan'].'&quote='.$dq['id_quote'].'" method="POST"  enctype="multipart/form-data">
+		<fieldset>
+	     <div class="modal-body">
+	      <ul class="nav nav-list">
+	       <li class="nav-header">Silahkan Isi Keterangan</li>
+		   <li><textarea class="input-xlarge" name="keterangan" id="keterangan" rows="8">
+		    </textarea></li>
+		  </ul> 
+	     </div>
+		</fieldset>
+	   
+	  </div>
+	  <div class="modal-footer">
+	  <button class="btn btn-success" type="submit" name="on" >Deal</button>
+	   <a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+	   </form>
+  		</div>
+	</div>
+  
+   </div>
+ </div>
+ <!--END-->
+	';
 $delivery = $dq['status'] == '2' ? $cek : '-';
 	
 	$qt.='

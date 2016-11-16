@@ -179,7 +179,7 @@ echo'
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label">payment status</label>
+								<label class="control-label">Payment status</label>
 								<div class="controls">
 									<select name="status_p" class="input-large m-wrap" tabindex="1">
 										<option value="1">Fujicon</option>
@@ -199,14 +199,14 @@ echo'
 						<table class="table table-striped table-bordered" id="sample_1">
 							<thead>
 							<tr>
-								<th class="hidden-phone">No</th>
-								<th class="hidden-phone">Code</th>
-								<th style="width:20%">Company Name</th>
-								<th class="hidden-phone">Address</th>
-								<th class="hidden-phone" style="width:10%">Phone</th>
-								<th class="hidden-phone">Fax</th>
-								<th class="hidden-phone">Status</th>
-								<th style="width:20%">Action</th>
+								<th class="hidden-phone" style="text-align:center;">No</th>
+								<th class="hidden-phone" style="text-align:center;">Code</th>
+								<th style="text-align:center;">Company Name</th>
+								<th class="hidden-phone" style="text-align:center;">Address</th>
+								<th class="hidden-phone" style="text-align:center;">Phone</th>
+								<th class="hidden-phone" style="text-align:center;">Fax</th>
+								<th class="hidden-phone"style="text-align:center;">Status</th>
+								<th style="text-align:center;">Action</th>
 							</tr>
 							</thead>
 							<tbody>

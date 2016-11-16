@@ -674,7 +674,7 @@ echo'
                  <!-- BEGIN BLANK PAGE PORTLET-->
                  <div class="widget purple">
                      <div class="widget-title">
-                         <h4><i class="icon-edit"></i> quotation Page </h4>
+                         <h4><i class="icon-edit"></i> Quotation Page </h4>
                        <span class="tools">
                            <a href="javascript:;" class="icon-chevron-down"></a>
                            <a href="javascript:;" class="icon-remove"></a>

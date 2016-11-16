@@ -351,14 +351,14 @@ echo '
                                          <table class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">cek</th>
-                                                    <th class="text-center">Order By</th>
-                                                    <th class="text-center">Spasi</th>
-                                                    <th class="text-center span9">Description</th>
-                                                    <th class="text-center">Unit</th>
-                                                    <th class="text-center">Unit Price</th>
-                                                    <th class="text-center">Quantity</th>
-                                                    <th class="text-center">total Price</th>
+                                                    <th style="text-align:center;">Cek</th>
+                                                    <th style="text-align:center;">Order By</th>
+                                                    <th style="text-align:center;">Spasi</th>
+                                                    <th style="text-align:center;">Description</th>
+                                                    <th style="text-align:center;">Unit</th>
+                                                    <th style="text-align:center;">Unit Price</th>
+                                                    <th style="text-align:center;">Quantity</th>
+                                                    <th style="text-align:center;">Total Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="cons">
@@ -366,9 +366,9 @@ echo '
                                             </tbody>
                                         </table>
                                         <div class="space10"></div>
-                                        <input type="button" value="Add New Item" id="add_new1" class="btn btn-small">
-										<input type="button" value="Subtotal" id="subtot1" class="btn btn-small">
-                                        <input type="button" value="Delete" id="removeButton1" class="btn btn-small">
+                                         <input type="button" value="Add New" id="add_new1" class="btn btn-success btn-small">
+                                     <button type="button" id="subtot1" class="btn btn-info btn-small subtot1">Subtotal</button>
+                                    <input type="button" value="Delete" id="removeButton1" class="btn btn-danger btn-small">
                                     </div>
                                  </div>
                                  <div class="space15"></div>
@@ -560,6 +560,16 @@ $(document).ready(function(){
 				'<td><input type="text" name="total[]" id="total_'+i+'" class="input-medium" ></td>'+
 				'</tr>'
 			);
+
+			$(document).on('click','.subtot1',function(){
+			total3 	  = $(this).parent().closest('tr').find('.total_').val();
+			total2_   = $(this).val();
+			subtot1   = 0;
+			subtot1   = total3+total2_;
+			$('.subtot1').val(total);
+
+			calculateTotal();
+			});
 		});
 		
 		

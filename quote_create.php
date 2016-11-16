@@ -207,13 +207,13 @@ echo'
 								 <table class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th class="text-center">Order By</th>
-											<th class="text-center">Spasi</th>
-											<th class="text-center span7">Description</th>
-											<th class="text-center">Unit</th>
-											<th class="text-center">Unit Price</th>
-											<th class="text-center">Quantity</th>
-											<th class="text-center">total Price</th>
+											<th style="text-align:center;">Order By</th>
+											<th style="text-align:center;">Spasi</th>
+											<th style="text-align:center;">Description</th>
+											<th style="text-align:center;">Unit</th>
+											<th style="text-align:center;">Unit Price</th>
+											<th style="text-align:center;">Quantity</th>
+											<th style="text-align:center;">Total Price</th>
 										</tr>
 									</thead>
 									<tbody id="cons">
@@ -247,9 +247,9 @@ echo'
 								</table>
 								<div class="space10"></div>
 								
-								<input type="button" value="Add New" id="add_new1" class="btn btn-small">
-								<input type="button" value="Subtotal" id="subtot1" class="btn btn-small">
-								<input type="button" value="Delete" id="removeButton1" class="btn btn-small">
+						<input type="button" value="Add New" id="add_new1" class="btn btn-success btn-small">
+						<button type="button" id="subtot1" class="btn btn-info btn-small subtot1">Subtotal</button>	
+						<input type="button" value="Delete" id="removeButton1" class="btn btn-danger btn-small">
 								
 							</div>
 						 </div>
@@ -381,8 +381,9 @@ require(XOOPS_ROOT_PATH.'/footer.php');
 <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.3"></script>
 <link rel="stylesheet" type="text/css" href="js/jquery.fancybox.css?v=2.1.2" media="screen" />
    
-   
   <script> 
+
+  //Variabel Button Tambah
 $(document).ready(function(){
 		var counter1c = 200;
 		var i=100;
@@ -410,12 +411,14 @@ $(document).ready(function(){
 		});	
 		
 		
-		
+		//Variabel Button Subtotal
+
 		var countersub = 200;
 		var j=100;
-		$('#subtot1').click(function(){
+		$(".subtot1").on('click', function() {
 			j=j+100;
 			$('#cons').append(
+
 				'<tr id="text_input1_'+countersub+'">'+
 				'<td><input name="orderby[]" type="text" class="input-mini" value="'+i+'" readonly="readonly"></td>'+
 				'<td><select name="spasi[]" class="input-small m-wrap" tabindex="1" style="font-weight:bold;">'+
@@ -428,12 +431,22 @@ $(document).ready(function(){
 				'<td><input type="text" name="unit[]" class="input-small" readonly="readonly"></td>'+
 				'<td><input type="text" name="price[]" id="price_'+i+'" class="input-small" readonly="readonly"></td>'+
 				'<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="input-small" readonly="readonly"></td>'+
-				'<td><input type="text" name="total[]" id="total_'+i+'" class="input-medium" ></td>'+
+				'<td><input type="text" name="total[]" id="total2_'+i+'" class="input-medium subtot1" ></td>'+
 				'</tr>'
 			);
-		});
+
+$(document).on('click','.subtot1',function(){
+	total3 	  = $(this).parent().closest('tr').find('.total_').val();
+	total2_   = $(this).val();
+	subtot1   = 0;
+	subtot1   = total3+total2_;
+	$('.subtot1').val(total);
+
+	calculateTotal();
+});
+});
 		
-			
+		//Variabel Button Hapus
 		$("#removeButton1").click(function () {
 			if(counter1c==0){
 				alert("Tidak ada file yang dapat dihapus ("+counter1c+")");
@@ -441,9 +454,9 @@ $(document).ready(function(){
 			}
 			$("#text_input1_"+counter1c).remove();
 			counter1c--;
-			
 		});
 	});
+
 //to check all checkboxes
 $(document).on('change','#check_all',function(){
 	$('input[class=case]:checkbox').prop("checked", $(this).is(':checked'));
@@ -487,7 +500,9 @@ $(document).on('focus','.autocomplete_txt',function(){
 			$('#itemName_'+id[1]).val(names[1]);
 			$('#quantity_'+id[1]).val(1);
 			$('#price_'+id[1]).val(names[2]);
+			$('#total2_'+id[1]).val(names[2]);
 			$('#total_'+id[1]).val( 1*names[2] );
+
 			calculateTotal();
 		}		      	
 	});
@@ -495,30 +510,39 @@ $(document).on('focus','.autocomplete_txt',function(){
 
 //price change
 $(document).on('change keyup blur','.changesNo',function(){
-	id_arr = $(this).attr('id');
-	id = id_arr.split("_");
+	id_arr   = $(this).attr('id');
+	id       = id_arr.split("_");
 	quantity = $('#quantity_'+id[1]).val();
-	price = $('#price_'+id[1]).val();
-	if( quantity!='' && price !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(0) );	
+	price    = $('#price_'+id[1]).val();
+	if( quantity!='' && price !='' ) 
+	 $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(0) );	
 	calculateTotal();
 });
+
+
+
+
 
 $(document).on('change keyup blur','#tax',function(){
 	calculateTotal();
 });
 
+
 //total price calculation 
 function calculateTotal(){
-	subTotal = 0 ; total = 0; 
+	subTotal = 0 ; total = 0; total2= 0;
 	$('.totalLinePrice').each(function(){
-		if($(this).val() != '' )subTotal += parseFloat( $(this).val() );
+		if($(this).val() != '' )
+		subTotal += parseFloat( $(this).val() ) ;
 	});
+	//$('#subtot1').val( subs.toFixed(0) );
 	$('#subTotal').val( subTotal.toFixed(0) );
+
 	tax = $('#tax').val();
 	if(tax != '' && typeof(tax) != "undefined" ){
 		taxAmount = subTotal * ( parseFloat(tax) /100 );
 		$('#taxAmount').val(taxAmount.toFixed(0));
-		total = subTotal + taxAmount;
+		total = subTotal + taxAmount ;
 	}else{
 		$('#taxAmount').val(0);
 		total = subTotal;
@@ -535,6 +559,7 @@ $(document).on('change keyup blur','#amountPaid',function(){
 function calculateAmountDue(){
 	amountPaid = $('#amountPaid').val();
 	total = $('#totalAftertax').val();
+
 	if(amountPaid != '' && typeof(amountPaid) != "undefined" ){
 		amountDue = parseFloat(total) - parseFloat( amountPaid );
 		$('.amountDue').val( amountDue.toFixed(0) );
@@ -543,7 +568,6 @@ function calculateAmountDue(){
 		$('.amountDue').val( total);
 	}
 }
-
 
 //It restrict the non-numbers
 var specialKeys = new Array();
@@ -554,5 +578,8 @@ function IsNumeric(e) {
     var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
     return ret;
 }
+
+	
+
 </script>
    

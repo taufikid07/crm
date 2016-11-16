@@ -230,12 +230,12 @@ echo '
                                  <table class="table table-striped table-bordered dataTable" id="sample_1">
                                     <thead>
                                     <tr>
-                                        <th class="hidden-phone">No</th>
-                                        <th>No Invoice</th>
-                                        <th width="55%">Activity Name</th>
-                                        <th width="10%">Send to client</th>
-                                        <th>Status</th>
-                                        <th align="center" width="30%" class="'.$pm1.'">Action</th>
+                                        <th class="hidden-phone" style="text-align:center;">No</th>
+                                        <th style="text-align:center;">No Invoice</th>
+                                        <th width="55%" style="text-align:center;">Activity Name</th>
+                                        <th width="10%" style="text-align:center;">Send to client</th>
+                                        <th style="text-align:center;">Status</th>
+                                        <th style="text-align:center;" width="30%" class="'.$pm1.'">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>

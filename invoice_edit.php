@@ -328,14 +328,14 @@ echo '
                                      <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">cek</th>
-                                                <th class="text-center">Order By</th>
-                                                <th class="text-center">Spasi</th>
-                                                <th class="text-center span9">Description</th>
-                                                <th class="text-center">Unit</th>
-                                                <th class="text-center">Unit Price</th>
-                                                <th class="text-center">Quantity</th>
-                                                <th class="text-center">total Price</th>
+                                                <th  style="text-align:center;">Cek</th>
+                                                <th  style="text-align:center;">Order By</th>
+                                                <th  style="text-align:center;">Spasi</th>
+                                                <th  style="text-align:center;">Description</th>
+                                                <th  style="text-align:center;">Unit</th>
+                                                <th  style="text-align:center;">Unit Price</th>
+                                                <th  style="text-align:center;">Quantity</th>
+                                                <th  style="text-align:center;">Total Price</th>
                                             </tr>
                                         </thead>
                                         <tbody id="cons">
@@ -344,6 +344,7 @@ echo '
                                     </table>
                                     <div class="space10"></div>
                                     <input type="button" value="Add New" id="add_new1" class="btn btn-small">
+                                    <button type="button" id="subtot1" class="btn btn-info btn-small subtot1">Subtotal</button>
                                     <input type="button" value="Delete" id="removeButton1" class="btn btn-small">
                                 </div>
                              </div>
@@ -511,6 +512,44 @@ $(document).ready(function(){
 				'</tr>'
 			);
 		});		
+
+		// Variabel Subtotal
+
+		var countersub = <?php echo $rowc; ?>;
+		var j=<?php echo $rowc; ?>;
+		$(".subtot1").on('click', function() {
+			j=j+1;
+			$('#cons').append(
+
+				'<tr id="text_input1_'+countersub+'">'+
+				'<td class="text-center"><input type="checkbox" name="id_act[]" value="aktif" class="input-small" checked></td>'+
+				'<td><input name="orderby[]" type="text" class="input-mini" value=" " readonly="readonly"></td>'+
+				'<td><select name="spasi[]" class="input-small m-wrap" tabindex="1" style="font-weight:bold;">'+
+					'<option value="0"> &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</option>'+
+					'<option value="10"> &nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</option>'+
+					'<option value="20"> &nbsp;&nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp; </option>'+
+					'<option value="30"> &nbsp;&nbsp;&nbsp;&nbsp;>>>&nbsp;&nbsp;&nbsp; </option>'+
+				'</select></td>'+
+				'<td><textarea name="des[]" class="span12" rows="3"></textarea></td>'+
+				'<td><input type="text" name="unit[]" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="price[]" id="price_'+i+'" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="input-small" readonly="readonly"></td>'+
+				'<td><input type="text" name="total[]" id="total2_'+i+'" class="input-medium subtot1" ></td>'+
+				'</tr>'
+			);
+
+$(document).on('click','.subtot1',function(){
+	total3 	  = $(this).parent().closest('tr').find('.total_').val();
+	total2_   = $(this).val();
+	subtot1   = 0;
+	subtot1   = total3 + total2_;
+	$('.subtot1').val(total);
+
+	calculateTotal();
+});
+});
+
+
 		$("#removeButton1").click(function () {
 			if(counter1c==0){
 				alert("Tidak ada file yang dapat dihapus ("+counter1c+")");
